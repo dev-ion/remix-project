@@ -14,10 +14,21 @@ class SelectContract extends EventEmitter {
 }
 
 function selectContract (browser: NightwatchBrowser, contractName: string, callback: VoidFunction) {
-  browser.clickLaunchIcon('settings').clickLaunchIcon('udapp')
-  .pause(10000)
-  .setValue('#runTabView select[class^="contractNames"]', contractName).perform(() => {
+  getCurrentValue(browser, (result) => {
+    if (result.value !== contractName) {
+      browser.setValue('#runTabView select[class^="contractNames"]', contractName)
+    }
     callback()
+  })
+}
+
+function getCurrentValue (api, callback) {
+  api.execute(function () {
+    const elem: any =  document.getElementById('#runTabView select[class^="contractNames"]')
+    return elem.options[elem.selectedIndex].value
+  }, [], (result) => {
+    console.log(result)
+    callback(result)
   })
 }
 
