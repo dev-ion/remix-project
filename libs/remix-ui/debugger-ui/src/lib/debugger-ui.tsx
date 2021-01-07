@@ -4,7 +4,7 @@ import StepManager from './step-manager/step-manager'
 import VmDebugger from './vm-debugger/vm-debugger'
 import VmDebuggerHead from './vm-debugger/vm-debugger-head'
 import { TransactionDebugger as Debugger } from '@remix-project/remix-debug'
-import { DebuggerUIProps } from './DebuggerAPI'
+import { DebuggerUIProps } from './idebugger-api'
 import { Toaster } from '@remix-ui/toaster'
 /* eslint-disable-next-line */
 import './debugger-ui.css'
@@ -44,19 +44,18 @@ export const DebuggerUI = (props: DebuggerUIProps) => {
 
   useEffect(() => {
     const setEditor = () => {
-      const editor = debuggerModule.editor
-
-      editor.event.register('breakpointCleared', (fileName, row) => {
+      
+      debuggerModule.onBreakpointCleared((fileName, row) => {
         if (state.debugger) state.debugger.breakPointManager.remove({fileName: fileName, row: row})
       })
   
-      editor.event.register('breakpointAdded', (fileName, row) => {
+      debuggerModule.onBreakpointAdded((fileName, row) => {
         if (state.debugger) {
           state.debugger.breakPointManager.add({fileName: fileName, row: row})
         }
       })
   
-      editor.event.register('contentChanged', () => {
+      debuggerModule.onEditorContentChanged(() => {
         unLoad()
       })
     }
