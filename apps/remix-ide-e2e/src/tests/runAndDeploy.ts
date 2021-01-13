@@ -127,9 +127,10 @@ module.exports = {
     .waitForElementPresent('.transaction-status--submitted')
     .pause(25000)
     .switchBrowserTab(0)
+    .end()
   },
 
-  'Should connect to Ethereum Main Network using MetaMask': function (browser: NightwatchBrowser) {
+  'Should connect to Ethereum Main Network using MetaMask': '' + function (browser: NightwatchBrowser) {
     browser.waitForElementPresent('*[data-id="remixIdeSidePanel"]')
     .switchBrowserTab(2)
     .waitForElementPresent('.network-indicator__down-arrow')
@@ -147,7 +148,7 @@ module.exports = {
     .assert.containsText('*[data-id="settingsNetworkEnv"]', 'Main (1) network')
   },
 
-  'Should deploy contract on Ethereum Main Network using MetaMask': function (browser: NightwatchBrowser) {
+  'Should deploy contract on Ethereum Main Network using MetaMask': '' + function (browser: NightwatchBrowser) {
     browser.waitForElementPresent('*[data-id="runTabSelectAccount"] option')
     .clickLaunchIcon('fileExplorers')
     .openFile('browser/Greet.sol')
@@ -167,7 +168,7 @@ module.exports = {
    * - Ropsten node for retrieving the trace and storage
    *
    */
-  'Should debug Ropsten transaction with source highlighting using the source verifier service and MetaMask': function (browser: NightwatchBrowser) {
+  'Should debug Ropsten transaction with source highlighting using the source verifier service and MetaMask': '' + function (browser: NightwatchBrowser) {
     browser.waitForElementPresent('*[data-id="remixIdeSidePanel"]')
     .waitForElementVisible('*[data-id="remixIdeIconPanel"]', 10000)
     .switchBrowserTab(2)
@@ -192,7 +193,7 @@ module.exports = {
     .assert.containsText('*[data-id="solidityLocals"]', 'to: 0x6C3CCC7FBA111707D5A1AAF2758E9D4F4AC5E7B1')
   },
 
-  'Call web3.eth.getAccounts() using Injected web3 (Metamask)': function (browser: NightwatchBrowser) {
+  'Call web3.eth.getAccounts() using Injected web3 (Metamask)': '' + function (browser: NightwatchBrowser) {
     browser
     .executeScript(`web3.eth.getAccounts()`)
     .pause(2000)
