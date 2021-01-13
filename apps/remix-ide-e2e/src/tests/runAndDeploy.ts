@@ -75,7 +75,7 @@ module.exports = {
     })
   },
 
-  'Should connect to Goerli Test Network using MetaMask': function (browser: NightwatchBrowser) {
+  'Should connect to Goerli Test Network using MetaMask': '' + function (browser: NightwatchBrowser) {
     browser.waitForElementPresent('*[data-id="remixIdeSidePanel"]')
     .setupMetamask(passphrase, password)
     .click('.network-indicator__down-arrow')
@@ -96,7 +96,7 @@ module.exports = {
     .switchBrowserTab(0)
   },
 
-  'Should deploy contract on Goerli Test Network using MetaMask': function (browser: NightwatchBrowser) {
+  'Should deploy contract on Goerli Test Network using MetaMask': '' + function (browser: NightwatchBrowser) {
     browser.waitForElementPresent('*[data-id="runTabSelectAccount"] option')
     .clickLaunchIcon('fileExplorers')
     .openFile('browser/Greet.sol')
@@ -113,7 +113,7 @@ module.exports = {
     .switchBrowserTab(0)
   },
 
-  'Should run low level interaction (fallback function) on Goerli Test Network using MetaMask': function (browser: NightwatchBrowser) {
+  'Should run low level interaction (fallback function) on Goerli Test Network using MetaMask': '' + function (browser: NightwatchBrowser) {
     browser.waitForElementPresent('*[data-id="remixIdeSidePanel"]')
     .waitForElementPresent('*[data-id="universalDappUiTitleExpander"]')
     .click('*[data-id="universalDappUiTitleExpander"]')
